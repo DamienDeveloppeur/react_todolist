@@ -2,21 +2,19 @@ import {useState} from 'react'
 import Item from "./component/Item"
 
 function App() {
-
-  const[inputData, setInputData] = useState();
-
-  const changeInput = (e) => {
-    console.log(setInputData(e.target.value))
+  const[toggle, setToggle] = useState(false);
+  const changeInput = () => {
+    if(!toggle) setToggle(true);
+    else setToggle(false)
   }
   return (
     <div className="App">
+      <div className={toggle ? "box" : "salmon" }>
         <h1>Hello react !</h1>
-        <input 
-        value={inputData}
-        type="text" onInput={e => changeInput(e)}/>
-      <Item title={inputData}></Item>
+        <button onClick={changeInput}>Change state !</button>
+        <h1>this state is {toggle ? "true" : "false"}</h1>
+      </div>
     </div>
-    
   );
 }
 
